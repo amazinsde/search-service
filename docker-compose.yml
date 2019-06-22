@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  server:
+    # replace username/repo:tag with your name and image details
+    image: theoriginalyangster/search-service
+    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm start'
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "4000:8080"
+      - "5432:5432"
+    # depends_on: 
+    #   - db
+    networks:
+      - webnet
+
+  # db:
+  #   image: "postgres:11.3"
+  #   ports:
+  #     - "54320:5432"
+  #   volumes:
+  #     - ./searchbardb:/var/lib/postgresql/data
+
+networks:
+  webnet:

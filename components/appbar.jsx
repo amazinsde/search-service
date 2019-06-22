@@ -26,7 +26,7 @@ function ButtonAppBar() {
     const inputLength = inputValue.length;
     
         return inputLength === 0 ? [] : suggestions.filter(lang =>
-        lang.text.toLowerCase().slice(0, inputLength) === inputValue
+          lang.text.toLowerCase().slice(0, inputLength) === inputValue
         );
     };
   
